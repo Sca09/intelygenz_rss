@@ -22,10 +22,6 @@ public interface MainView {
 
     void showDefaultErrorMessage();
 
-    boolean closeDrawer();
-
-    void showSearchBox();
-
     boolean cleanSearchBox();
 
     ApplicationComponent getApplicationComponentFromApplication();

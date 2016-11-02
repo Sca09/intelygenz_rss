@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
-                android:textSize="?attr/feed_details_title"/>
+                android:textSize="24sp"/>
 
             <TextView
                 android:id="@+id/feed_description"
@@ -48,7 +48,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:textSize="?attr/feed_details_description"/>
+                android:textSize="16sp"/>
 
         </LinearLayout>
 

@@ -25,7 +25,7 @@
         android:background="@android:color/transparent"/>
 
     <EditText
-        android:id="@+id/input_text"
+        android:id="@+id/search_input_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -34,7 +34,7 @@
         android:lines="1"
         android:scrollHorizontally="true"
         android:ellipsize="end"
-        android:textSize="?attr/search"
+        android:textSize="16sp"
         android:textColorHint="@color/edit_text_hint_text_color"
         android:inputType="textCapSentences"
         android:background="@drawable/edit_text"

@@ -7,15 +7,4 @@
         <attr name="description" format="string" />
     </declare-styleable>
 
-    <declare-styleable name="FontStyle">
-        <attr name="toolbar_title" format="dimension" />
-        <attr name="feed_card_title" format="dimension" />
-        <attr name="feed_card_description" format="dimension" />
-        <attr name="feed_details_title" format="dimension" />
-        <attr name="feed_details_description" format="dimension" />
-        <attr name="search" format="dimension" />
-        <attr name="menu_item" format="dimension" />
-        <attr name="settings_item" format="dimension" />
-    </declare-styleable>
-
 </resources>

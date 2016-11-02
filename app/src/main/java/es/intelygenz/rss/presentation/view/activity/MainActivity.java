@@ -1,13 +1,7 @@
 package es.intelygenz.rss.presentation.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -25,14 +19,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import es.intelygenz.rss.R;
 import es.intelygenz.rss.presentation.internal.di.components.ActivityComponent;
 import es.intelygenz.rss.presentation.internal.di.components.ApplicationComponent;
 import es.intelygenz.rss.presentation.model.FeedModel;
 import es.intelygenz.rss.presentation.presenter.MainScreenPresenter;
 import es.intelygenz.rss.presentation.presenter.MainScreenPresenterImpl;
-import es.intelygenz.rss.presentation.utils.Constants;
 import es.intelygenz.rss.presentation.utils.Utils;
 import es.intelygenz.rss.presentation.view.MainView;
 import es.intelygenz.rss.presentation.view.adapter.FeedListAdapter;
@@ -46,10 +38,8 @@ public class MainActivity extends BaseActivity implements MainView, OnFeedCardLi
 
     @BindView(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.drawer_layout) DrawerLayout drawer;
     @BindView(R.id.progress_bar) ProgressBar progressBar;
-    @BindView(R.id.nav_view) NavigationView navigationView;
-    @BindView(R.id.input_text) EditText searchEditText;
+    @BindView(R.id.search_input_text) EditText searchEditText;
     @BindView(R.id.feed_recycler_view) RecyclerView feedRecyclerView;
 
     private MainScreenPresenter presenter;
@@ -66,7 +56,6 @@ public class MainActivity extends BaseActivity implements MainView, OnFeedCardLi
         presenter = new MainScreenPresenterImpl(this);
 
         showToolBarActionButton();
-        setDrawer();
 
         setLayout();
     }
@@ -120,32 +109,6 @@ public class MainActivity extends BaseActivity implements MainView, OnFeedCardLi
     private void showToolBarActionButton() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-    }
-
-    private void setDrawer() {
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-    }
-
-    @OnClick(R.id.settings_menu_layout)
-    public void onSettingsClicked(View view) {
-        closeDrawer();
-        navigator.navigateToPreferences(this, Constants.REQUEST_CODE_SETTINGS);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case Constants.REQUEST_CODE_SETTINGS:
-                if(resultCode == RESULT_OK) {
-                    finish();
-                    startActivity(getIntent());
-                }
-        }
-
     }
 
     @Override
@@ -208,22 +171,6 @@ public class MainActivity extends BaseActivity implements MainView, OnFeedCardLi
     }
 
     @Override
-    public boolean closeDrawer() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public void showSearchBox() {
-        searchEditText.setVisibility(View.VISIBLE);
-    }
-
-    @Override
     public boolean cleanSearchBox() {
         if(!Strings.isNullOrEmpty(searchEditText.getText().toString())) {
             searchEditText.setText("");
@@ -254,7 +201,7 @@ public class MainActivity extends BaseActivity implements MainView, OnFeedCardLi
 
     @Override
     public void onBackPressed() {
-        if (!closeDrawer() && !cleanSearchBox()){
+        if (!cleanSearchBox()){
             super.onBackPressed();
         }
     }
