@@ -7,13 +7,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
-
-import com.google.common.base.Strings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +19,7 @@ import butterknife.OnClick;
 import es.intelygenz.rss.R;
 import es.intelygenz.rss.presentation.utils.FontStyle;
 import es.intelygenz.rss.presentation.utils.Preferences;
+import es.intelygenz.rss.presentation.view.adapter.TextSizeAdapter;
 
 /**
  * Created by davidtorralbo on 02/11/16.
@@ -66,8 +62,7 @@ public class PreferencesActivity extends BaseActivity {
         list.add(FontStyle.Large.getTitle());
         list.add(FontStyle.ExtraLarge.getTitle());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        TextSizeAdapter adapter = new TextSizeAdapter(this, list);
         textSizeSpinner.setAdapter(adapter);
 
         final Preferences prefs = new Preferences(this);
