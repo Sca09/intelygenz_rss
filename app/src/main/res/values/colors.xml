@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#23475F</color>
+    <color name="colorPrimaryDark">#0E3C5C</color>
+    <color name="colorAccent">#FFEB3B</color>
+
+    <color name="feed_list_bg">#EDF6F3</color>
+    <color name="feed_card_image_bg">#F6F6F6</color>
+
+    <color name="edit_text_hint_text_color">#D7DDDC</color>
+
+    <color name="edit_text_bg_color">#F2FFFFFF</color>
+</resources>
