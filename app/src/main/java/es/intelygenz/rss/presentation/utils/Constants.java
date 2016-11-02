@@ -8,4 +8,6 @@ public class Constants {
 
     public static final String INTENT_EXTRA_FEED_MODEL = "feedModel";
 
+    public static final int REQUEST_CODE_SETTINGS = 1000;
+
 }

@@ -1,8 +1,10 @@
 package es.intelygenz.rss.presentation.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,6 +32,7 @@ import es.intelygenz.rss.presentation.internal.di.components.ApplicationComponen
 import es.intelygenz.rss.presentation.model.FeedModel;
 import es.intelygenz.rss.presentation.presenter.MainScreenPresenter;
 import es.intelygenz.rss.presentation.presenter.MainScreenPresenterImpl;
+import es.intelygenz.rss.presentation.utils.Constants;
 import es.intelygenz.rss.presentation.utils.Utils;
 import es.intelygenz.rss.presentation.view.MainView;
 import es.intelygenz.rss.presentation.view.adapter.FeedListAdapter;
@@ -128,6 +131,21 @@ public class MainActivity extends BaseActivity implements MainView, OnFeedCardLi
     @OnClick(R.id.settings_menu_layout)
     public void onSettingsClicked(View view) {
         closeDrawer();
+        navigator.navigateToPreferences(this, Constants.REQUEST_CODE_SETTINGS);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case Constants.REQUEST_CODE_SETTINGS:
+                if(resultCode == RESULT_OK) {
+                    finish();
+                    startActivity(getIntent());
+                }
+        }
+
     }
 
     @Override

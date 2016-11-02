@@ -10,4 +10,6 @@
     <color name="edit_text_hint_text_color">#D7DDDC</color>
 
     <color name="edit_text_bg_color">#F2FFFFFF</color>
+
+    <color name="menu_item_color">#4A4A4A</color>
 </resources>

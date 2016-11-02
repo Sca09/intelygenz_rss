@@ -2,6 +2,7 @@ package es.intelygenz.rss.presentation.navigation;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import es.intelygenz.rss.R;
 import es.intelygenz.rss.presentation.model.FeedModel;
 import es.intelygenz.rss.presentation.utils.Constants;
 import es.intelygenz.rss.presentation.view.activity.FeedDetailsActivity;
+import es.intelygenz.rss.presentation.view.activity.PreferencesActivity;
 
 /**
  * Created by davidtorralbo on 02/11/16.
@@ -39,6 +41,13 @@ public class Navigator {
             } else {
                 activity.startActivity(intentToLaunch);
             }
+        }
+    }
+
+    public void navigateToPreferences(Activity activity, int requestCode) {
+        if(activity != null) {
+            Intent intentToLaunch = PreferencesActivity.getCallingIntent(activity);
+            activity.startActivityForResult(intentToLaunch, requestCode);
         }
     }
 }
