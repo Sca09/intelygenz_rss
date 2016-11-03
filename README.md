@@ -43,7 +43,7 @@ I also provide a sample battery of JUnit test. This architecture is in deep used
 Libraries used in this project
 ------------------------------
 * [Retrofit 2] [retrofit2]
-* [Dagger] [dagger]
+* [Dagger 2] [dagger2]
 * [JUnit] [junit]
 * [Mockito] [mockito]
 * [Picasso] [picasso]
@@ -73,7 +73,7 @@ License
 [newsapi]: https://newsapi.org/
 [sqlite]: https://sqlite.org/
 [retrofit2]: http://square.github.io/retrofit/
-[dagger]: https://github.com/square/dagger
+[dagger2]: https://google.github.io/dagger/
 [junit]: https://github.com/junit-team/junit
 [mockito]: http://mockito.org/
 [picasso]: http://square.github.io/picasso/
