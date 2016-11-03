@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity implements MainView, OnFeedCardLi
     }
 
     @OnClick(R.id.settings_menu_layout)
-    public void settingButtonClicked(View view) {
+    public void settingsButtonClicked(View view) {
         closeDrawer();
         navigator.navigateToPreferencesScreen(this, Constants.REQUEST_CODE_PREFERENCES);
     }

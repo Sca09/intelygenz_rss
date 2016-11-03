@@ -65,4 +65,8 @@ public class SourcesRepositoryImpl implements SourcesRepository, Callback<Source
             listener.onException(t);
         }
     }
+
+    public void setListener(OnSourcesRequestListener listener) {
+        this.listener = listener;
+    }
 }

@@ -24,6 +24,8 @@ import static org.mockito.Mockito.when;
 
 public class MainScreenPresenterUnitTest {
 
+    public static final String FAKE_SOURCE = "fakeSource";
+
     @Mock
     Context mMockContext;
 
@@ -48,14 +50,14 @@ public class MainScreenPresenterUnitTest {
 
     @Test
     public void loadFeeds_ProgressShown() {
-        presenter.loadFeeds();
+        presenter.loadFeeds(FAKE_SOURCE);
         verify(mainView, times(1)).showProgress();
     }
 
     @Test
     public void loadFeeds_InteractorCalled() {
-        presenter.loadFeeds();
-        verify(interactor, times(1)).getFeedsForMainScreen();
+        presenter.loadFeeds(FAKE_SOURCE);
+        verify(interactor, times(1)).getFeedsForMainScreen(FAKE_SOURCE);
     }
 
     @Test

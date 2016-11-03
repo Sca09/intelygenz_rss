@@ -14,10 +14,13 @@ import java.util.Map;
 
 import es.intelygenz.rss.data.entity.response.ErrorResponse;
 import es.intelygenz.rss.data.entity.response.FeedsResponse;
+import es.intelygenz.rss.data.entity.response.SourcesResponse;
 import es.intelygenz.rss.data.entity.response.entity.Article;
 import es.intelygenz.rss.data.net.ApiInterface;
-import es.intelygenz.rss.data.net.ConnectionManagerUtils;
 import es.intelygenz.rss.data.repository.feeds.FeedsRepository.OnRequestListener;
+import es.intelygenz.rss.data.repository.sources.SourcesRepository;
+import es.intelygenz.rss.data.repository.sources.SourcesRepository.OnSourcesRequestListener;
+import es.intelygenz.rss.data.repository.sources.SourcesRepositoryImpl;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -30,7 +33,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class FeedRespositoryUnitTest {
+public class SourcesRespositoryUnitTest {
 
     public static final String FAKE_ERROR_MESSAGE = "fakeErrorMessage";
 
@@ -41,66 +44,27 @@ public class FeedRespositoryUnitTest {
     ApiInterface mMockApiService = Mockito.mock(ApiInterface.class);
 
     @Mock
-    ConnectionManagerUtils connectionManagerUtils = Mockito.mock(ConnectionManagerUtils.class);
+    OnSourcesRequestListener listener = Mockito.mock(OnSourcesRequestListener.class);
 
-    @Mock
-    OnRequestListener listener = Mockito.mock(OnRequestListener.class);
-
-    FeedsRepositoryImpl repository = new FeedsRepositoryImpl(mMockApiService, mMockContext) {
-        @Override
-        public void saveArticleListToDB(List<Article> articleList) {
-            dataSaved = true;
-        }
-
-        @Override
-        public void getArticleListFromDB() {
-            dataRetrieved = true;
-        }
-    };
-
-    private boolean dataSaved;
-    private boolean dataRetrieved;
+    SourcesRepositoryImpl repository = new SourcesRepositoryImpl(mMockApiService);
 
     @Before
     public void setUp() {
-        dataSaved = false;
-        dataRetrieved = false;
-
-        repository.setConnectionManagerUtils(connectionManagerUtils);
         repository.setListener(listener);
     }
 
     @Test
-    public void getFeedsForMainScreen_RepositoryCalled() {
-        when(connectionManagerUtils.isNetworkAvailable(mMockContext)).thenReturn(true);
-        when(mMockApiService.getFeeds(any(Map.class))).thenReturn(Mockito.mock(Call.class));
+    public void getSources_RepositoryCalled() {
+        when(mMockApiService.getSources(any(Map.class))).thenReturn(Mockito.mock(Call.class));
 
-        repository.getFeeds(listener);
+        repository.getSources(listener);
 
-        verify(mMockApiService, timeout(1)).getFeeds(any(Map.class));
-    }
-
-    @Test
-    public void getFeedsForMainScreen_NoInternet_DataRetrieved() {
-        when(connectionManagerUtils.isNetworkAvailable(mMockContext)).thenReturn(false);
-
-        repository.getFeeds(listener);
-
-        assertTrue(dataRetrieved);
-    }
-
-    @Test
-    public void onResponse_ResponseSuccessful_DataSavedInDB() {
-        Response<FeedsResponse> response = Response.success(new FeedsResponse());
-
-        repository.onResponse(Mockito.mock(Call.class), response);
-
-        assertTrue(dataSaved);
+        verify(mMockApiService, timeout(1)).getSources(any(Map.class));
     }
 
     @Test
     public void onResponse_ResponseSuccessful_ListenerCalled() {
-        Response<FeedsResponse> response = Response.success(new FeedsResponse());
+        Response<SourcesResponse> response = Response.success(new SourcesResponse());
 
         repository.onResponse(Mockito.mock(Call.class), response);
 
@@ -111,7 +75,7 @@ public class FeedRespositoryUnitTest {
     public void onResponse_ResponseError_ListenerCalled() {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage(FAKE_ERROR_MESSAGE);
-        Response<FeedsResponse> response = Response.error(403, ResponseBody.create(MediaType.parse("application/json"), new Gson().toJson(errorResponse)));
+        Response<SourcesResponse> response = Response.error(403, ResponseBody.create(MediaType.parse("application/json"), new Gson().toJson(errorResponse)));
 
         repository.onResponse(Mockito.mock(Call.class), response);
 

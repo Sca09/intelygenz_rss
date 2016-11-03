@@ -60,4 +60,12 @@ public class PreferencesInteractorImpl implements PreferencesInteractor, OnSourc
             listener.onPreferencesRequestException(t);
         }
     }
+
+    public void setRepository(SourcesRepository repository) {
+        this.repository = repository;
+    }
+
+    public void setMapper(SourceModelDataMapper mapper) {
+        this.mapper = mapper;
+    }
 }
