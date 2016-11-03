@@ -1,10 +1,7 @@
 Introduction
 ------------
 
-This is the solution to the Intelygenz RSS challenge
- 
-
-To resolve this challenge I decided to use as the base of my architecture the [Clean Architecture][clean], splitting the project into 3 different layers:
+This is the solution to the Intelygenz RSS challenge. To resolve it I decided to use as the base of my architecture the [Clean Architecture][clean], splitting the project into 3 different layers:
 
 * **Presentation**: That constains all the presentation logic. Following the [MVP][mvp] pattern, I use **views** to control all actions related to the UI/UX while the **presenters** will manage all the logic based on the user's actions.
 * **Domain**: It manages all the business logic of the app. In the middle between the UI/UX and the backend.
