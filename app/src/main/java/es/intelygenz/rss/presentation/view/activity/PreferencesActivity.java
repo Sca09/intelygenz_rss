@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -56,10 +57,13 @@ public class PreferencesActivity extends BaseActivity implements PreferencesView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
 
+        overrideOpenTransition();
+
         ButterKnife.bind(this);
 
         presenter = new PreferencesScreenPresenterImpl(this);
 
+        setSupportActionBar(toolbar);
         showToolBarActionButton();
 
         setLayout();
@@ -70,8 +74,19 @@ public class PreferencesActivity extends BaseActivity implements PreferencesView
     }
 
     private void showToolBarActionButton() {
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -187,5 +202,19 @@ public class PreferencesActivity extends BaseActivity implements PreferencesView
 
         setResult(RESULT_OK);
         finish();
+    }
+
+    private void overrideOpenTransition() {
+        overridePendingTransition(R.anim.right_in, R.anim.left_out);
+    }
+
+    private void overrideCloseTransition() {
+        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overrideCloseTransition();
     }
 }

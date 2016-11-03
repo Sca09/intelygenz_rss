@@ -24,6 +24,8 @@ public interface MainView {
 
     boolean cleanSearchBox();
 
+    boolean closeDrawer();
+
     ApplicationComponent getApplicationComponentFromApplication();
 
     ActivityComponent getActivityComponentFromBaseActivity();
