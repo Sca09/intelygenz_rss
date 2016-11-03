@@ -22,11 +22,11 @@ The app will show the details of the news in a separate screen.
 
 ![Screencast](./art/Intelygenz_RSS_details.png)
 
-In case you want to change the source of the data, you can configure it in the Settings section (from the drawer in the main screen):
+In case you want to change the source of the data, you can configure it in the Settings section (from the drawer in the main screen).
 
 ![Screencast](./art/Intelygenz_RSS_settings.png)
 
-The flow could be like this
+The flow could be like this.
 
 ![Screencast](./art/Intelygenz_RSS_flow.gif)
 
