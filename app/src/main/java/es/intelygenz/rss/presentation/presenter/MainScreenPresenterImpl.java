@@ -26,9 +26,9 @@ public class MainScreenPresenterImpl implements MainScreenPresenter, OnMainReque
     }
 
     @Override
-    public void loadFeeds() {
+    public void loadFeeds(String source) {
         view.showProgress();
-        interactor.getFeedsForMainScreen();
+        interactor.getFeedsForMainScreen(source);
     }
 
     @Override

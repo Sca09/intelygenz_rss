@@ -2,6 +2,8 @@ package es.intelygenz.rss.data.repository.feeds;
 
 import android.content.Context;
 
+import com.google.common.base.Strings;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ import es.intelygenz.rss.data.net.ApiClient;
 import es.intelygenz.rss.data.net.ApiInterface;
 import es.intelygenz.rss.data.net.ConnectionManagerUtils;
 import es.intelygenz.rss.presentation.internal.di.PerActivity;
+import es.intelygenz.rss.presentation.utils.Constants;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,13 +44,17 @@ public class FeedsRepositoryImpl implements FeedsRepository, Callback<FeedsRespo
     }
 
     @Override
-    public void getFeeds(OnRequestListener listener) {
+    public void getFeeds(String source, OnRequestListener listener) {
         this.listener = listener;
 
         if(connectionManagerUtils.isNetworkAvailable(context)) {
             Map<String, String> data = new HashMap<>();
-            data.put("source", BuildTypeConfiguration.WEB_SERVICE_DEFAULT_SOURCE);
-            data.put("sortBy", BuildTypeConfiguration.WEB_SERVICE_DEFAULT_SORT_BY);
+            if(Strings.isNullOrEmpty(source)) {
+                data.put("source", Constants.WEB_SERVICE_DEFAULT_SOURCE);
+            } else {
+                data.put("source", source);
+            }
+            data.put("sortBy", Constants.WEB_SERVICE_DEFAULT_SORT_BY);
             data.put("apiKey", BuildTypeConfiguration.WEB_SERVICE_API_KEY);
 
             Call<FeedsResponse> call = apiService.getFeeds(data);

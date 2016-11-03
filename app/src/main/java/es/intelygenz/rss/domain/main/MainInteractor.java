@@ -22,6 +22,6 @@ public interface MainInteractor {
 
     }
 
-    void getFeedsForMainScreen();
+    void getFeedsForMainScreen(String source);
 
 }

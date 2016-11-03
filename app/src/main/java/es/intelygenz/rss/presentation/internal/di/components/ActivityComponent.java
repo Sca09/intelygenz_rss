@@ -19,6 +19,7 @@ import android.app.Activity;
 
 import dagger.Component;
 import es.intelygenz.rss.domain.main.MainInteractorImpl;
+import es.intelygenz.rss.domain.preferences.PreferencesInteractorImpl;
 import es.intelygenz.rss.presentation.internal.di.PerActivity;
 import es.intelygenz.rss.presentation.internal.di.modules.ActivityModule;
 
@@ -30,6 +31,7 @@ import es.intelygenz.rss.presentation.internal.di.modules.ActivityModule;
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
     void inject(MainInteractorImpl mainInteractor);
+    void inject(PreferencesInteractorImpl preferencesInteractor);
 
     //Exposed to sub-graphs.
     Activity activity();

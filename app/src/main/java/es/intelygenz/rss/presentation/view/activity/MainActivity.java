@@ -1,5 +1,6 @@
 package es.intelygenz.rss.presentation.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +26,8 @@ import es.intelygenz.rss.presentation.internal.di.components.ApplicationComponen
 import es.intelygenz.rss.presentation.model.FeedModel;
 import es.intelygenz.rss.presentation.presenter.MainScreenPresenter;
 import es.intelygenz.rss.presentation.presenter.MainScreenPresenterImpl;
+import es.intelygenz.rss.presentation.utils.Constants;
+import es.intelygenz.rss.presentation.utils.PreferencesService;
 import es.intelygenz.rss.presentation.utils.Utils;
 import es.intelygenz.rss.presentation.view.MainView;
 import es.intelygenz.rss.presentation.view.adapter.FeedListAdapter;
@@ -69,7 +72,7 @@ public class MainActivity extends BaseActivity implements MainView, OnFeedCardLi
         feedRecyclerView.setLayoutManager(layoutManager);
         adapter.notifyDataSetChanged();
 
-        presenter.loadFeeds();
+        presenter.loadFeeds(PreferencesService.getSource(this));
 
         setSearchButtonListener();
     }
@@ -176,7 +179,7 @@ public class MainActivity extends BaseActivity implements MainView, OnFeedCardLi
             searchEditText.setText("");
             searchEditText.clearFocus();
 
-            presenter.loadFeeds();
+            presenter.loadFeeds(PreferencesService.getSource(this));
 
             return true;
         }
@@ -201,8 +204,24 @@ public class MainActivity extends BaseActivity implements MainView, OnFeedCardLi
 
     @Override
     public void onBackPressed() {
+        navigator.navigateToPreferencesScreen(this, Constants.REQUEST_CODE_PREFERENCES);
+        /*
         if (!cleanSearchBox()){
             super.onBackPressed();
+        }
+        */
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case Constants.REQUEST_CODE_PREFERENCES:
+                if(resultCode == RESULT_OK) {
+                    presenter.loadFeeds(PreferencesService.getSource(this));
+                }
+                break;
         }
     }
 }

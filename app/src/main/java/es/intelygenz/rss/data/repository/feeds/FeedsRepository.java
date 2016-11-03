@@ -18,6 +18,6 @@ public interface FeedsRepository {
 
     }
 
-    void getFeeds(OnRequestListener listener);
+    void getFeeds(String source, OnRequestListener listener);
 
 }

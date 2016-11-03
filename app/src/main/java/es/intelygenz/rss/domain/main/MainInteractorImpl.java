@@ -32,8 +32,8 @@ public class MainInteractorImpl implements MainInteractor, OnRequestListener {
     }
 
     @Override
-    public void getFeedsForMainScreen() {
-        repository.getFeeds(this);
+    public void getFeedsForMainScreen(String source) {
+        repository.getFeeds(source, this);
     }
 
     @Override

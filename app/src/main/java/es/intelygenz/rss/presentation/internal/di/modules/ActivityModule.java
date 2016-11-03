@@ -8,6 +8,8 @@ import es.intelygenz.rss.data.net.ApiClient;
 import es.intelygenz.rss.data.net.ApiInterface;
 import es.intelygenz.rss.data.repository.feeds.FeedsRepository;
 import es.intelygenz.rss.data.repository.feeds.FeedsRepositoryImpl;
+import es.intelygenz.rss.data.repository.sources.SourcesRepository;
+import es.intelygenz.rss.data.repository.sources.SourcesRepositoryImpl;
 import es.intelygenz.rss.presentation.internal.di.PerActivity;
 
 /**
@@ -39,5 +41,12 @@ public class ActivityModule {
     FeedsRepository provideFeedsRepository() {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         return new FeedsRepositoryImpl(apiService, activity);
+    }
+
+    @Provides
+    @PerActivity
+    SourcesRepository provideSourcesRepository() {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        return new SourcesRepositoryImpl(apiService);
     }
 }

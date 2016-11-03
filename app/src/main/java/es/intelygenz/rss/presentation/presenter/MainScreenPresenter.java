@@ -8,7 +8,7 @@ import es.intelygenz.rss.domain.main.MainInteractor;
 
 public interface MainScreenPresenter extends Presenter {
 
-    void loadFeeds();
+    void loadFeeds(String source);
 
     void setInteractor(MainInteractor interactor);
 
