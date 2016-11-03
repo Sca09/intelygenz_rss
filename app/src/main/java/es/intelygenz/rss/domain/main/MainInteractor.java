@@ -2,6 +2,8 @@ package es.intelygenz.rss.domain.main;
 
 import java.util.List;
 
+import es.intelygenz.rss.data.repository.feeds.FeedsRepository;
+import es.intelygenz.rss.domain.mapper.FeedModelDataMapper;
 import es.intelygenz.rss.presentation.model.FeedModel;
 
 /**

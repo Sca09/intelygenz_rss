@@ -75,7 +75,9 @@ public class FeedDetailsActivity extends BaseActivity {
             }
         }
 
-        if(ConnectionManagerUtils.isNetworkAvailable(this)) {
+        ConnectionManagerUtils connectionManagerUtils = new ConnectionManagerUtils();
+
+        if(connectionManagerUtils.isNetworkAvailable(this)) {
             fab.setVisibility(View.VISIBLE);
         } else {
             fab.setVisibility(View.GONE);

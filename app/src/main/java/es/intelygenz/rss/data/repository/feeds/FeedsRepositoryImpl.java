@@ -29,19 +29,22 @@ public class FeedsRepositoryImpl implements FeedsRepository, Callback<FeedsRespo
 
     private ApiInterface apiService;
     private OnRequestListener listener;
+    private ConnectionManagerUtils connectionManagerUtils;
 
     private Context context;
 
     public FeedsRepositoryImpl(ApiInterface apiService, Context context) {
         this.apiService = apiService;
         this.context = context;
+
+        connectionManagerUtils = new ConnectionManagerUtils();
     }
 
     @Override
     public void getFeeds(OnRequestListener listener) {
         this.listener = listener;
 
-        if(ConnectionManagerUtils.isNetworkAvailable(context)) {
+        if(connectionManagerUtils.isNetworkAvailable(context)) {
             Map<String, String> data = new HashMap<>();
             data.put("source", BuildTypeConfiguration.WEB_SERVICE_DEFAULT_SOURCE);
             data.put("sortBy", BuildTypeConfiguration.WEB_SERVICE_DEFAULT_SORT_BY);
@@ -80,7 +83,7 @@ public class FeedsRepositoryImpl implements FeedsRepository, Callback<FeedsRespo
         }
     }
 
-    private void getArticleListFromDB() {
+    public void getArticleListFromDB() {
         DatabaseHandler db = new DatabaseHandler(context);
         List<Article> articleList = db.getLastContacts(10);
         if(listener != null) {
@@ -91,8 +94,16 @@ public class FeedsRepositoryImpl implements FeedsRepository, Callback<FeedsRespo
         }
     }
 
-    private void saveArticleListToDB(List<Article> articleList) {
+    public void saveArticleListToDB(List<Article> articleList) {
         DatabaseHandler db = new DatabaseHandler(context);
         db.saveArticleList(articleList);
+    }
+
+    public void setConnectionManagerUtils(ConnectionManagerUtils connectionManagerUtils) {
+        this.connectionManagerUtils = connectionManagerUtils;
+    }
+
+    public void setListener(OnRequestListener listener) {
+        this.listener = listener;
     }
 }

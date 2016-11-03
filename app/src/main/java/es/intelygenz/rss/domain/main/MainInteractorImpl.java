@@ -60,4 +60,12 @@ public class MainInteractorImpl implements MainInteractor, OnRequestListener {
             listener.onMainRequestException(t);
         }
     }
+
+    public void setRepository(FeedsRepository repository) {
+        this.repository = repository;
+    }
+
+    public void setMapper(FeedModelDataMapper mapper) {
+        this.mapper = mapper;
+    }
 }

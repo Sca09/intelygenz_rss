@@ -19,7 +19,7 @@ public class ErrorConversor {
         ErrorResponse error;
 
         try {
-            Converter<ResponseBody, ErrorResponse> converter = retrofit.responseBodyConverter(Error.class, new Annotation[0]);
+            Converter<ResponseBody, ErrorResponse> converter = retrofit.responseBodyConverter(ErrorResponse.class, new Annotation[0]);
             error = converter.convert(response.errorBody());
         } catch (IOException e) {
             return new ErrorResponse();

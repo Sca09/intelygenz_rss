@@ -63,4 +63,9 @@ public class MainScreenPresenterImpl implements MainScreenPresenter, OnMainReque
         view.hideProgress();
         view.showDefaultErrorMessage();
     }
+
+    @Override
+    public void setInteractor(MainInteractor interactor) {
+        this.interactor = interactor;
+    }
 }
