@@ -5,7 +5,7 @@ This is the solution to the Intelygenz RSS challenge. To resolve it I decided to
 
 * **Presentation**: That contains all the presentation logic. Following the [MVP][mvp] pattern, I use **views** to control all actions related to the UI/UX while the **presenters** will manage all the logic based on the user's actions.
 * **Domain**: It manages all the business logic of the app. In the middle between the UI/UX and the backend.
-* **Data**: This layer is in charge of the external communications. In this case I decided to feed the data from the [News API][newsapi] site, so I used a **net** layer for that. Using [Retrofit 2][retrofit2] as library to make the necessary RESTFull calls. Additionally the app saves the result in local DB [SQLite][sqlite] to be shown if there are network problems.
+* **Data**: This layer is in charge of the external communications. In this case I decided to feed the data from the [News API][newsapi] site, so I used a **net** layer for that. Using [Retrofit 2][retrofit2] as library to make the necessary RESTFul calls. Additionally the app saves the result in local DB [SQLite][sqlite] to be shown if there are network problems.
 
 
 UX
@@ -54,8 +54,6 @@ Libraries used in this project
 
 License
 -------
-
-    Copyright 2015 Karumi
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
