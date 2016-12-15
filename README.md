@@ -33,7 +33,7 @@ The flow could be like this.
 
 Testing
 -------
-I also provide a sample battery of JUnit test. This architecture is in deep used to facilitate unit testing and CI. [JUnit][junit] and [Mockito][mockito] are the libraries used to accomplish this task. It tests:
+I also provide a sample battery of JUnit test. This architecture is indeed used to facilitate unit testing and CI. [JUnit][junit] and [Mockito][mockito] are the libraries used to accomplish this task. It tests:
 
 * **Presenters**: In order to test that all presentation logic works as expected.
 * **Interactors**: To test the connection between **Presentation** and **Data** layers.
